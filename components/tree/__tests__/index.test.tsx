@@ -80,6 +80,13 @@ describe('Tree', () => {
     expect(callback).toHaveBeenCalled()
   })
 
+  it('should trigger event when folder clicked', () => {
+    const callback = jest.fn()
+    const wrapper = mount(<Tree value={mockFiles} onClick={callback} />)
+    wrapper.find('.folder').at(0).simulate('click', nativeEvent)
+    expect(callback).toHaveBeenCalled()
+  })
+
   it('should be work when value is empty', () => {
     const wrapper = mount(<Tree value={[]} />)
     expect(() => wrapper.unmount()).not.toThrow()
